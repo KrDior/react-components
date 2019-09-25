@@ -1,56 +1,87 @@
 import React, { Fragment } from 'react';
-import Chip from './Chip';
-import ChipExample from './ChipExample';
+import Badge from './Badge';
+import Button from '../button/Button';
+import Icon from '../icon/Icon';
 
-const ChipSandbox = () => (
+const BadgeSandbox = () => (
   <Fragment>
 
-    <h2><span>1. Chip with text:</span></h2>
-    <Chip text="User name" />
+    <h2><span>1. Badges with text:</span></h2>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="envelope" />
+      <Badge value="new" />
+    </Button>
+    <Button>
+      <Icon name="envelope" />
+      <Badge circle value="new" />
+    </Button>
 
-    <h2><span>2. Chip with long text:</span></h2>
-    <Chip text="Very long chip text should be cropped" />
+    <h2><span>2. Badges with number:</span></h2>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="comment" />
+      <Badge value={2} />
+    </Button>
+    <Button>
+      <Icon name="comment-dots" />
+      <Badge circle value={12} />
+    </Button>
 
-    <h2><span>3. Chips with icon and close button:</span></h2>
-    <Chip text="Chip" withIcon />
-    <Chip text="Chip" withClose />
+    <h2><span>3. Inline Badges:</span></h2>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="phone" />
+      <Badge inline value={1} />
+    </Button>
+    <Button>
+      <Icon name="phone" />
+      <Badge inline value="1 missed" />
+    </Button>
 
-    <h2><span>4. Full Chip:</span></h2>
-    <Chip text="Full Chip" withIcon withClose />
+    <h2><span>4. Outer Badges:</span></h2>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="bell" />
+      <Badge outer value={1} />
+    </Button>
+    <Button>
+      <Icon name="wifi" />
+      <Badge outer warning value={1} />
+    </Button>
 
-    <h2><span>5. Chip with image:</span></h2>
-    <Chip text="React" withImage imageSrc="https://pp.userapi.com/a9QrnDt7kgIb8VkcrCWpCoqd7JRwq5wX_YDr7Q/pOMxeuWzvxg.jpg?ava=1" imgAlt="react" />
-
-    <h2><span>6. Chip with actions on Body and cross-icon:</span></h2>
-    <Chip
-      text="React"
-      withImage
-      imageSrc="https://pp.userapi.com/a9QrnDt7kgIb8VkcrCWpCoqd7JRwq5wX_YDr7Q/pOMxeuWzvxg.jpg?ava=1"
-      imgAlt="react"
-      onChipClick={() => { console.log('clicked on a chip body'); }}
-    />
-    <Chip
-      text="Angular"
-      withImage
-      imageSrc="https://wishtackblog.files.wordpress.com/2017/03/angular.png?w=748"
-      imgAlt="angular"
-      onCloseClick={() => { console.log('clicked on a close icon'); }}
-      withClose
-    />
-    <Chip
-      text="Vue"
-      withImage
-      imageSrc="https://pbs.twimg.com/profile_images/875996174305472512/upM71pVR_400x400.jpg"
-      imgAlt="vue"
-      onCloseClick={() => { console.log('clicked on a close icon'); }}
-      onChipClick={() => { console.log('clicked on a chip body'); }}
-      withClose
-    />
-
-    <h2><span>7. Example of using:</span></h2>
-    <ChipExample />
+    <h2><span>5. Warning, Alert, Success, Info Badges:</span></h2>
+    <Button style={{ marginRight: '20px', marginBottom: '20px' }}>
+      <Icon name="bullhorn" />
+      <Badge circle warning value={1} />
+    </Button>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="inbox" />
+      <Badge circle alert value={1} />
+    </Button>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="paper-plane" />
+      <Badge circle success value={1} />
+    </Button>
+    <Button>
+      <Icon name="rss" />
+      <Badge circle info value={1} />
+    </Button>
+    <br />
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="bullhorn" />
+      <Badge warning value={1} />
+    </Button>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="inbox" />
+      <Badge alert value={1} />
+    </Button>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="paper-plane" />
+      <Badge success value={1} />
+    </Button>
+    <Button style={{ marginRight: '20px' }}>
+      <Icon name="rss" />
+      <Badge info value={1} />
+    </Button>
 
   </Fragment>
 );
 
-export default ChipSandbox;
+export default BadgeSandbox;

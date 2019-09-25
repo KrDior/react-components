@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './Button.css';
 
 const Button = ({
-  children, onClick, className, disabled, active, ...attrs
+  children, onClick, className, disabled, invert, active, ...attrs
 }) => {
   const onClickAction = e => {
     if (disabled) {
@@ -18,6 +18,7 @@ const Button = ({
   const initClasses = classNames(
     'btn',
     className,
+    { invert },
     { active },
   );
 

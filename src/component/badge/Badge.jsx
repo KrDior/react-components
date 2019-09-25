@@ -2,97 +2,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Icon from '../icon/Icon';
-import Image from '../image/Image';
+import './Badge.css';
 
-import './Chip.css';
-
-const Chip = ({
-  text,
-  withImage,
-  withIcon,
-  withClose,
-  imageSrc,
-  imgAlt,
-  iconName,
-  className,
-  onChipClick,
-  onCloseClick,
-  id,
+const Badge = ({
+  value, circle, className, inline, outer, ...attrs
 }) => {
-  const onChipClickAction = () => {
-    onChipClick(id);
-  };
-
-  const onCloseClickAction = e => {
-    e.stopPropagation();
-    onCloseClick(e, id);
-  };
+  const text = typeof value === 'string' || value instanceof String;
 
   const classes = classNames(
-    'chip',
+    'badge',
+    { circle },
     className,
+    { inline },
+    { outer },
+    { text },
+    { warning: attrs.warning },
+    { alert: attrs.alert },
+    { success: attrs.success },
+    { info: attrs.info },
   );
 
   return (
-    <div className={classes} onClick={onChipClickAction}>
-      {withImage
-        && (
-        <span className="chipImage">
-          <Image src={imageSrc} alt={imgAlt} width={24} height={24} />
-        </span>
-        )
-      }
-      {withIcon
-        && (
-        <span className="chipIcon">
-          <Icon name={iconName} />
-        </span>
-        )
-      }
-      <span className="chipText">{text}</span>
-      {withClose
-        && (
-        <span className="chipClose" onClick={onCloseClickAction}>
-          <Icon name="times" />
-        </span>
-        )
-      }
-    </div>
+    <span className={classes}>
+      { value }
+    </span>
   );
 };
 
-Chip.propTypes = {
-  text: PropTypes.oneOfType([
+Badge.propTypes = {
+  value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
-  withImage: PropTypes.bool,
-  withIcon: PropTypes.bool,
-  withClose: PropTypes.bool,
-  imageSrc: PropTypes.string,
-  imgAlt: PropTypes.string,
-  iconName: PropTypes.string,
+  circle: PropTypes.bool,
   className: PropTypes.string,
-  id: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  onChipClick: PropTypes.func,
-  onCloseClick: PropTypes.func,
+  inline: PropTypes.bool,
+  outer: PropTypes.bool,
 };
 
-Chip.defaultProps = {
-  withImage: false,
-  withIcon: false,
-  withClose: false,
+Badge.defaultProps = {
+  circle: false,
   className: '',
-  imgAlt: '',
-  iconName: 'user-tie',
-  imageSrc: '',
-  id: null,
-  onChipClick: () => {},
-  onCloseClick: () => {},
+  inline: false,
+  outer: false,
 };
 
-export default Chip;
+export default Badge;

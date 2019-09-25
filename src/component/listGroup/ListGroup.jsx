@@ -2,97 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Icon from '../icon/Icon';
-import Image from '../image/Image';
+import './ListGroup.css';
 
-import './Chip.css';
-
-const Chip = ({
-  text,
-  withImage,
-  withIcon,
-  withClose,
-  imageSrc,
-  imgAlt,
-  iconName,
-  className,
-  onChipClick,
-  onCloseClick,
-  id,
+const ListGroup = ({
+  children, className, tag: Tag, ...attrs
 }) => {
-  const onChipClickAction = () => {
-    onChipClick(id);
-  };
-
-  const onCloseClickAction = e => {
-    e.stopPropagation();
-    onCloseClick(e, id);
-  };
-
   const classes = classNames(
-    'chip',
+    'list-group',
     className,
   );
 
   return (
-    <div className={classes} onClick={onChipClickAction}>
-      {withImage
-        && (
-        <span className="chipImage">
-          <Image src={imageSrc} alt={imgAlt} width={24} height={24} />
-        </span>
-        )
-      }
-      {withIcon
-        && (
-        <span className="chipIcon">
-          <Icon name={iconName} />
-        </span>
-        )
-      }
-      <span className="chipText">{text}</span>
-      {withClose
-        && (
-        <span className="chipClose" onClick={onCloseClickAction}>
-          <Icon name="times" />
-        </span>
-        )
-      }
-    </div>
+    <Tag className={classes} {...attrs}>
+      {children}
+    </Tag>
   );
 };
 
-Chip.propTypes = {
-  text: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]).isRequired,
-  withImage: PropTypes.bool,
-  withIcon: PropTypes.bool,
-  withClose: PropTypes.bool,
-  imageSrc: PropTypes.string,
-  imgAlt: PropTypes.string,
-  iconName: PropTypes.string,
+ListGroup.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  onChipClick: PropTypes.func,
-  onCloseClick: PropTypes.func,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-Chip.defaultProps = {
-  withImage: false,
-  withIcon: false,
-  withClose: false,
+ListGroup.defaultProps = {
+  children: null,
   className: '',
-  imgAlt: '',
-  iconName: 'user-tie',
-  imageSrc: '',
-  id: null,
-  onChipClick: () => {},
-  onCloseClick: () => {},
+  tag: 'ul',
 };
 
-export default Chip;
+export default ListGroup;
